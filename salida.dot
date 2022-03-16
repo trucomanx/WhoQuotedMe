@@ -1,0 +1,26 @@
+// One article
+digraph {
+	node [shape=Mrecord]
+	style=filled
+	PRINCIPAL [label="14 December 2018\npatient 3d body pose\nestimation from\npressure imaging\n-\nLeslie Casas,Nassir\nNavab,S. Demirci"]
+	REF0 [label="2016\npatient mocap: human\npose estimation\nunder blanket\nocclusion for\nhospital monitoring\napplications\n-\nF. Achilles, A.\nIchim, Huseyin\nCoskun, Federico\nTombari, S.\nNoachtar, Nassir\nNavab" href="https://www.semanticscholar.org/paper/Patient-MoCap%3A-Human-Pose-Estimation-Under-Blanket-Achilles-Ichim/f571408c27e0db22729f386dd8511cd9fe67dc00"]
+	REF1 [label="2012\nmarkerless\nestimation of\npatient orientation,\nposture and pose\nusing range and\npressure imaging\n-\nR. Grimm, S. Bauer,\nJ. Sukkau, J.\nHornegger, G.\nGreiner" href="https://www.semanticscholar.org/paper/Markerless-estimation-of-patient-orientation%2C-and-Grimm-Bauer/096a441b6c4955e9ca4e31ae1ef56e291d29a3f8"]
+	REF2 [label="2016\nparsing human\nskeletons in an\noperating room\n-\nVasileios\nBelagiannis, Xinchao\nWang, Nassir Navab" href="https://www.semanticscholar.org/paper/Parsing-human-skeletons-in-an-operating-room-Belagiannis-Wang/ad15e64c93676b57ebcef4c2c4183d41b246f8ae"]
+	REF3 [label="2018\nhuman pose\nestimation from\npressure sensor data\n-\nLeslie Casas, Chris\nMürwald, S. Demirci" href="https://www.semanticscholar.org/paper/Human-Pose-Estimation-from-Pressure-Sensor-Data-Casas-M%C3%BCrwald/ff4eb42c68306f0cb12c2cc297560a67b93c27e7"]
+	REF4 [label="2017\na multi-view rgb-d\napproach for human\npose estimation in\noperating rooms\n-\nA.\nKadkhodamohammadi,\nA. Gangi, M.\nMathelin, N. Padoy" href="https://www.semanticscholar.org/paper/A-Multi-view-RGB-D-Approach-for-Human-Pose-in-Rooms-Kadkhodamohammadi-Gangi/7c8dfb7f20bba5de883c5135763ac68011b05faa"]
+	REF5 [label="2017\nrecurrent human pose\nestimation\n-\nVasileios\nBelagiannis, Andrew\nZisserman" href="https://www.semanticscholar.org/paper/Recurrent-Human-Pose-Estimation-Belagiannis-Zisserman/2dd46b83a1cf5c7c811a462728d9797c270c2cb4"]
+	REF6 [label="2011\nfall detection with\nmultiple cameras: an\nocclusion-resistant\nmethod based on 3-d\nsilhouette vertical\ndistribution\n-\nE. Auvinet, F.\nMulton, A. St-\nArnaud, J. Rousseau,\nJ. Meunier" href="https://www.semanticscholar.org/paper/Fall-Detection-With-Multiple-Cameras%3A-An-Method-on-Auvinet-Multon/54d317853deddf601d51c59a6e9f489d27fd41c0"]
+	REF7 [label="2016\nconvolutional pose\nmachines\n-\nShih-En Wei, V.\nRamakrishna, T.\nKanade, Yaser Sheikh" href="https://www.semanticscholar.org/paper/Convolutional-Pose-Machines-Wei-Ramakrishna/864e7db59f2ccfec1ee9f6eba79566ac7b0634df"]
+	REF8 [label="2015\nrobust optimization\nfor deep regression\n-\nVasileios\nBelagiannis, C.\nRupprecht, G.\nCarneiro, Nassir\nNavab" href="https://www.semanticscholar.org/paper/Robust-Optimization-for-Deep-Regression-Belagiannis-Rupprecht/a5147d10cc4c66d14edbd702f72b272bf7d6a845"]
+	REF9 [label="2018\npersonlab: person\npose estimation and\ninstance\nsegmentation with a\nbottom-up, part-\nbased, geometric\nembedding model\n-\nG. Papandreou, Tyler\nLixuan Zhu, Liang-\nChieh Chen, Spyros\nGidaris, Jonathan\nTompson, K. Murphy" href="https://www.semanticscholar.org/paper/PersonLab%3A-Person-Pose-Estimation-and-Instance-with-Papandreou-Zhu/aa159dbc73f8a4c5a4c81295e20a2086a63d55b6"]
+	REF0 -> PRINCIPAL [style=dashed]
+	REF1 -> PRINCIPAL [style=dashed]
+	REF2 -> PRINCIPAL [style=dashed]
+	REF3 -> PRINCIPAL [style=dashed]
+	REF4 -> PRINCIPAL [style=dashed]
+	REF5 -> PRINCIPAL [style=dashed]
+	REF6 -> PRINCIPAL [style=dashed]
+	REF7 -> PRINCIPAL [style=dashed]
+	REF8 -> PRINCIPAL [style=dashed]
+	REF9 -> PRINCIPAL [style=dashed]
+}

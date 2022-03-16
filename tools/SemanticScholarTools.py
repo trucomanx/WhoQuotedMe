@@ -12,7 +12,7 @@ def SemanticScholarCited(path_of_chromedriver, article_title,cited_text):
     article_title=article_title.lower().strip();
     #print(path_of_chromedriver);
     
-    mycited=[];
+    myrefs=[];
     mydata=None;
 
     options = Options();
@@ -76,16 +76,21 @@ def SemanticScholarCited(path_of_chromedriver, article_title,cited_text):
             #print("   href:{"+hrefval+"}")
         
             list_authors_html_link = item.find_elements_by_xpath(".//a[@class='cl-paper-authors__author-link']");
+            
             authors=[];
             for dat in list_authors_html_link:
                 authors.append(dat.text);
+                
+            dates=item.find_element_by_xpath(".//span[@class='cl-paper-pubdates']").text;
+            #print(dates)
             
             #print(authors,",")
             
             mydata={
                 "title":title,
                 "authors":authors,
-                "href":hrefval
+                "href":hrefval,
+                "date":dates
             };
             
             if(len(hrefval)!=0):
@@ -100,16 +105,20 @@ def SemanticScholarCited(path_of_chromedriver, article_title,cited_text):
                         until(EC.presence_of_element_located((By.XPATH, "//div[@class='scorecard-stat__body']")))
                 except:
                     print("CITATION PAGE DID NOT LOAD!")
-                    return [],mydata;
+                    return mydata,[];
                 
                 #waitelement.screenshot('foo3b.png')
                 #driver2.save_screenshot('foo3.png')
                 
-                list_of_cited = driver2.find_elements_by_xpath("//div[@class='cl-paper-row citation-list__paper-row']")
+                #list_of_cited = driver2.find_elements_by_xpath("//div[@class='cl-paper-row citation-list__paper-row']");
+                
+                references=driver2.find_element_by_xpath("//div[@id='references']");
+                
+                list_of_refs = references.find_elements_by_xpath(".//div[@class='cl-paper-row citation-list__paper-row']")
                 
 
                 n=0;
-                for item in list_of_cited:
+                for item in list_of_refs:
                     # saves the article title as a string
                     GS_RT = item.find_element_by_xpath(".//a[@data-heap-id='citation_title']");
                     title = GS_RT.text.lower().strip();
@@ -122,13 +131,15 @@ def SemanticScholarCited(path_of_chromedriver, article_title,cited_text):
                         for dat in authors_list:
                             #print(dat.text)
                             authors.append(dat.text);
-                            
+                        dates=item.find_element_by_xpath(".//span[@class='cl-paper-pubdates']").text;
+                        #print(dates)
                         tmp={
                             "title":title,
                             "authors":authors,
-                            "href":hrefval
+                            "href":hrefval,
+                            "date":dates
                         };
-                        mycited.append(tmp);
+                        myrefs.append(tmp);
                         n=n+1;
     
-    return mycited,mydata;
+    return mydata,myrefs;
