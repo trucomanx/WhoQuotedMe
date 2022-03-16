@@ -2,7 +2,7 @@
 import tools.ScholarGoogleTools as SGT
 
 
-path_of_chromedriver = "/home/fernando/Downloads/TESIS-DOUTORADO-2/PESQUISA/CRAWLER/SeleniumSemanticScraper/OnlyCrawler/ChromeDriver/ChromeDriverLin";
+path_of_chromedriver = "/home/fernando/Downloads/TESIS-DOUTORADO-2/PESQUISA/CRAWLER/SeleniumSemanticScraper/ChromeDriver/ChromeDriverLin";
 
 article_title="Bangla sign language detection using sift and cnn";
 
@@ -14,6 +14,7 @@ print("   href:\t"+mydata["href"]);
 
 
 for dat in mycited:
+    print("\n")
     print("  Title:["+dat["title"]+"]");
     print("Authors:["+dat["authors"]+"]");
     print("   href:["+dat["href"]+"]");

@@ -71,7 +71,7 @@ def ScholarGoogleCited(path_of_chromedriver, article_title,cited_text):
             
             href_cited=element_cited.get_attribute('href');
             
-            print(href_cited+"\n")
+            #print(href_cited+"\n")
             
             if(len(href_cited)!=0):
                 # access Semantic Scholar main page
