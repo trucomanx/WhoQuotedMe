@@ -1,11 +1,11 @@
 import tools.StringTools as ST
 #    pip install graphviz
 
-def export_graphviz_imgfile(mycited,mydata,imgfilepath):
+def export_graphviz_dotfile(mycited,mydata,imgfilepath,formato='eps'):
     width=20;
     from graphviz import Digraph
     
-    dot = Digraph(comment='One article',node_attr={'shape': 'Mrecord'})
+    dot = Digraph(format=formato, comment='One article',node_attr={'shape': 'Mrecord'})
     
     dot.attr(style='filled')
     
@@ -28,5 +28,6 @@ def export_graphviz_imgfile(mycited,mydata,imgfilepath):
         dot.edge('PRINCIPAL',"REF"+str(n), style='dashed');
     
     print(dot);
+    dot.graph_attr['dpi'] = '300'
     dot.render(imgfilepath, view=True)
 

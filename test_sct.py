@@ -1,5 +1,5 @@
 #
-import tools.SemanticScholarTools as SGT
+import tools.SemanticScholarTools as SCT
 import tools.GraphvizTools as GT
 
 path_of_chromedriver = (
@@ -10,10 +10,10 @@ path_of_chromedriver = (
 
 article_title="Detection of patient’s bed statuses in 3D using a microsoft kinect";
 
-imgfilepath = "salida.eps";
+dotfilepath = "salida.dot";
 
-mycited,mydata=SGT.SemanticScholarCited(path_of_chromedriver, article_title,'Citado por');
+mycited,mydata=SCT.SemanticScholarCited(path_of_chromedriver, article_title,'Citado por');
 
-GT.export_graphviz_imgfile(mycited,mydata,imgfilepath);
+GT.export_graphviz_dotfile(mycited,mydata,dotfilepath);
 
 
