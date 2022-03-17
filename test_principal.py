@@ -2,6 +2,7 @@
 import tools.SemanticScholarTools as SGT
 import tools.ReferenceTools as RT
 import tools.GraphvizTools as GT
+import tools.StringTools as ST
 
 path_of_chromedriver = ST.path_of_file(__file__)+"/ChromeDriver/ChromeDriverLin";
 
