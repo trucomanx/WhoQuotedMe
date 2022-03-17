@@ -11,7 +11,12 @@ import os
 import re 
 
 '''
-
+Find basic data of a paper from the title.
+[Input]
+path_of_chromedriver: {string} Path of driver of crome.
+       article_title: {string} Article title.
+[Return]
+ paper_data: {dictionary} Paper data.
 '''
 def SemanticScholarDataFromTitle(path_of_chromedriver, article_title):
     article_title=article_title.lower().strip();
@@ -101,8 +106,16 @@ def SemanticScholarDataFromTitle(path_of_chromedriver, article_title):
     driver.close();
     return dicdata;
     
-
-def SemanticScholarCited(path_of_chromedriver, article_title, timeout=20):
+'''
+Find basic data and references of a paper from the title.
+[Input]
+path_of_chromedriver: {string} Path of driver of crome.
+       article_title: {string} Article title.
+[Return]
+ mylistdata: {list of Dictionaries} Paper data list.
+ paper_data: {dictionary} Paper data.
+'''
+def SemanticScholarReferences(path_of_chromedriver, article_title, timeout=20):
     list_of_dicdata=[];
     
     dicdata=SemanticScholarDataFromTitle(path_of_chromedriver, article_title);
@@ -130,6 +143,7 @@ def SemanticScholarCited(path_of_chromedriver, article_title, timeout=20):
         except:
             print("\nPROBLEMS LOADING REFERENCES IN:");
             ST.print_paper_data(dicdata);
+            driver2.close();
             return dicdata,[];
             
         # dismiss the popup that asks to allow cookies, if it shows up
@@ -143,8 +157,6 @@ def SemanticScholarCited(path_of_chromedriver, article_title, timeout=20):
         ## driver2.save_screenshot('foo1.png')
         
         
-            
-        
         nn=0;
         while True:
             list_of_paper_data=[];
@@ -157,6 +169,7 @@ def SemanticScholarCited(path_of_chromedriver, article_title, timeout=20):
                     until(EC.presence_of_element_located((By.XPATH,".//div[@id='references']")))
             except:
                 print("\nDON'T HAVE MORE References:");
+                driver2.close();
                 return dicdata,list_of_dicdata;
             
             
@@ -240,5 +253,7 @@ def SemanticScholarCited(path_of_chromedriver, article_title, timeout=20):
                 ## print("SUBJECT HAS NO MORE SEARCH PAGES!")
                 break;
             nn=nn+1;
+        
+        driver2.close();
     
     return dicdata,list_of_dicdata;

@@ -25,5 +25,12 @@ def print_paper_data(paper_data):
     print("   href:",paper_data["href"]);
     
 import pathlib
+
+'''
+[Input]
+myfile: {String} path of file.
+[Return]
+The directory of filepath <myfile>
+'''
 def path_of_file(myfile):
     return str(pathlib.Path(myfile).parent.resolve())

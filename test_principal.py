@@ -1,8 +1,7 @@
 #
-import tools.SemanticScholarTools as SGT
-import tools.ReferenceTools as RT
-import tools.GraphvizTools as GT
 import tools.StringTools as ST
+import tools.RelationsTools as RelT
+import tools.GraphvizTools as GT
 
 path_of_chromedriver = ST.path_of_file(__file__)+"/ChromeDriver/ChromeDriverLin";
 
@@ -16,24 +15,8 @@ article_title = [
 "Body Pose Analysis using CNN and Pressure Sensor Array Data"
 ];
 
-N=len(article_title);
-
-cited=[None]*N;
-data=[None]*N;
-for n in range(N):
-    print("\nworking:", article_title[n]);
-    mydata,myrefs=SGT.SemanticScholarCited(path_of_chromedriver, article_title[n])
-    cited[n]=myrefs;
-    data[n]=mydata;
-
-
-table=[None]*N;
-for n in range(N):
-    table[n]=[];
-    for m in range(N):
-        if RT.title_in_paperdata(data[n]["title"],cited[m]):
-            table[n].append(m);
-
 dotfilepath = "salida.dot";
+
+data,table=RelT.InterReferences(path_of_chromedriver, article_title);
 GT.export_graphviz_file_of_references(table,data,dotfilepath);
 
