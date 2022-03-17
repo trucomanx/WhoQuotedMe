@@ -23,3 +23,7 @@ def print_paper_data(paper_data):
     print("authors:",paper_data["authors"]);
     print("   date:",paper_data["date"]);
     print("   href:",paper_data["href"]);
+    
+import pathlib
+def path_of_file(myfile):
+    return str(pathlib.Path(myfile).parent.resolve())
