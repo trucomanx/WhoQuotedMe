@@ -18,7 +18,7 @@ path_of_chromedriver: {string} Path of driver of crome.
 [Return]
  paper_data: {dictionary} Paper data.
 '''
-def SemanticScholarDataFromTitle(path_of_chromedriver, article_title):
+def SemanticScholarDataFromTitle(path_of_chromedriver, article_title, timeout=20):
     article_title=article_title.lower().strip();
     
     dicdata=None;
@@ -38,7 +38,7 @@ def SemanticScholarDataFromTitle(path_of_chromedriver, article_title):
 
     # waits for the page to load, searching for the Field of Study filter to be enabled
     try:
-        waitelement = WebDriverWait(driver, 20). \
+        waitelement = WebDriverWait(driver, timeout). \
             until(EC.presence_of_element_located((By.XPATH, "//input[@aria-label='Search text']")))
     except:
         print("PROBLEMS LOADING:",SemanticsScholarSite);
@@ -59,7 +59,7 @@ def SemanticScholarDataFromTitle(path_of_chromedriver, article_title):
     
     # waits for the page to load, searching for the Field of Study filter to be enabled
     try:
-        waitelement = WebDriverWait(driver, 20). \
+        waitelement = WebDriverWait(driver, timeout). \
             until(EC.presence_of_element_located(
                     (By.XPATH, "//div[@class='dropdown-filters__result-count']")))
     except TimeoutError:
@@ -79,8 +79,11 @@ def SemanticScholarDataFromTitle(path_of_chromedriver, article_title):
         ## GS_T.screenshot("foo.png")
         
         if(re.sub("[^a-zA-Z]+", "",title)==re.sub("[^a-zA-Z]+", "",article_title)):
+            print("  title:",title);
+            
             # saves the link of article as a string
             hrefval=GS_T.get_attribute('href');
+            print("   href:",hrefval);
             
             # saves the authors as a list string
             list_authors_html_link = item.find_elements_by_xpath(".//a[@class='cl-paper-authors__author-link']");
@@ -88,9 +91,11 @@ def SemanticScholarDataFromTitle(path_of_chromedriver, article_title):
             authors=[];
             for dat in list_authors_html_link:
                 authors.append(dat.text);
+            print("authors:",authors);
             
             # saves the date as a string
             dates=item.find_element_by_xpath(".//span[@class='cl-paper-pubdates']").text;
+            print("   date:",dates);
             
             # Packaging
             dicdata={

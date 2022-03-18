@@ -24,6 +24,15 @@ def print_paper_data(paper_data):
     print("   date:",paper_data["date"]);
     print("   href:",paper_data["href"]);
     
+
+def data_to_string(paper_data,width):
+    title_format = str(paper_data["date"])+"\\n";
+    title_format+= text_width(paper_data["title"],width,"\\n");
+    title_format+= "\\n-\\n";
+    title_format+= text_width(",".join(paper_data["authors"]),width,"\\n");
+    return title_format;
+    
+
 import pathlib
 
 '''
@@ -34,3 +43,4 @@ The directory of filepath <myfile>
 '''
 def path_of_file(myfile):
     return str(pathlib.Path(myfile).parent.resolve())
+
