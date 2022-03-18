@@ -2,8 +2,14 @@
 import tools.StringTools as ST
 import tools.RelationsTools as RelT
 import tools.GraphvizTools as GT
+import platform
 
-path_of_chromedriver = ST.path_of_file(__file__)+"/ChromeDriver/ChromeDriverLin";
+if   platform.system() == 'Darwin':
+    path_of_chromedriver = ST.path_of_file(__file__)+"/ChromeDriver/ChromeDriverMac";
+elif platform.system() == 'Windows':
+    path_of_chromedriver = ST.path_of_file(__file__)+"/ChromeDriver/ChromeDriverWin.exe";
+else:
+    path_of_chromedriver = ST.path_of_file(__file__)+"/ChromeDriver/ChromeDriverLin";
 
 article_title = [
 "Sleep Pose Recognition in an ICU Using Multimodal Data and Environmental Feedback",
