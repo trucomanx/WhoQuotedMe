@@ -1,6 +1,4 @@
 import tools.StringTools as ST
-from graphviz import Digraph
-#    pip install graphviz
 
 '''
 Generates a *.dot file (dotfilepath) with the relation of a paper (paper_data) and yours references (mylistdata)
