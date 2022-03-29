@@ -132,7 +132,8 @@ def InterReferences(path_of_chromedriver, article_title):
     reference=[None]*N;
     paperdata=[None]*N;
     for n in range(N):
-        print("\nworking:", article_title[n]);
+        print("\n========="+"="*len(article_title[n]));
+        print("working:", article_title[n]);
         mydata,myrefs=SST.SemanticScholarReferences(path_of_chromedriver, article_title[n])
         reference[n]=myrefs;
         paperdata[n]=mydata;

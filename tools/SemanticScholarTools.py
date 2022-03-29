@@ -48,7 +48,7 @@ def SemanticScholarDataFromTitle(path_of_chromedriver, article_title, timeout=20
     # dismiss the popup that asks to allow cookies, if it shows up
     try:
         driver.find_element_by_xpath(
-            "//div[@class='copyright-banner__dismiss-btn button button--secondary']").click()
+            "//button[@class='copyright-banner__dismiss-btn button button--secondary']").click()
     except:
         pass
     ## driver.save_screenshot('foo1.png')
@@ -154,7 +154,7 @@ def SemanticScholarReferences(path_of_chromedriver, article_title, timeout=20):
         # dismiss the popup that asks to allow cookies, if it shows up
         try:
             driver2.find_element_by_xpath(
-                "//div[@class='copyright-banner__dismiss-btn button button--secondary']").click()
+                "//button[@class='copyright-banner__dismiss-btn button button--secondary']").click()
         except:
             pass
         
@@ -172,8 +172,9 @@ def SemanticScholarReferences(path_of_chromedriver, article_title, timeout=20):
                 # Selecting the references
                 bigstructure = WebDriverWait(driver2, timeout). \
                     until(EC.presence_of_element_located((By.XPATH,".//div[@id='references']")))
+                #bigstructure.screenshot('bigstructure'+str(nn+1)+'.png')
             except:
-                print("\nDON'T HAVE MORE References:");
+                print("\nDON'T HAVE References:");
                 driver2.close();
                 return dicdata,list_of_dicdata;
             
@@ -182,8 +183,10 @@ def SemanticScholarReferences(path_of_chromedriver, article_title, timeout=20):
             try:
                 bar = bigstructure.find_element_by_xpath(".//div[@class='citation-pagination flex-row-vcenter']");
                 has_nextpage=True;
+                #bar.screenshot('bar'+str(nn+1)+'.png')
             except:
                 pass;
+            
                 
             if(has_nextpage):
                 while True:
