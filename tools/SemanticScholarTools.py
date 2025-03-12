@@ -35,7 +35,7 @@ def article_dict_from_id(paperId):
         "title":primeiro_artigo['title'],
         "authors":[d["name"] for d in primeiro_artigo['authors']],
         "url":primeiro_artigo['url'],
-        "year":primeiro_artigo['year'],
+        "year":primeiro_artigo['year'] if isinstance(primeiro_artigo['year'], int) else 0 ,
         "referenceCount":primeiro_artigo['referenceCount'],
         "citationCount":primeiro_artigo['citationCount']
     };
@@ -66,7 +66,7 @@ def article_dict_from_title(article_title):
             "title":primeiro_artigo['title'],
             "authors":[d["name"] for d in primeiro_artigo['authors']],
             "url":primeiro_artigo['url'],
-            "year":primeiro_artigo['year'],
+            "year":primeiro_artigo['year'] if isinstance(primeiro_artigo['year'], int) else 0 ,
             "referenceCount":primeiro_artigo["referenceCount"],
             "citationCount":primeiro_artigo["citationCount"]
         };
