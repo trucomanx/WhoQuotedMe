@@ -1,5 +1,21 @@
 import tools.StringTools as ST
 
+import urllib
+import webbrowser
+
+def view_dot_graphvizonline(arquivo_dot):
+    with open(arquivo_dot, "r", encoding="utf-8") as f:
+        conteudo = f.read()
+
+    # Codifica para URL
+    conteudo_codificado = urllib.parse.quote(conteudo)
+
+    # URL do GraphvizOnline
+    url = f"https://dreampuf.github.io/GraphvizOnline/#" + conteudo_codificado
+
+    # Abre no navegador
+    webbrowser.open(url)
+
 '''
 Generates a *.dot file (dotfilepath) with the relation of a paper (paper_data) and yours references (mylistdata)
 [Inputs]
@@ -8,7 +24,7 @@ Generates a *.dot file (dotfilepath) with the relation of a paper (paper_data) a
 dotfilepath: {string} File path of *.dot output Graphviz file.
       width: {Integer} Number of characteres in each line of text blocks.
 '''
-def export_graphviz_file_of_article(mylistdata,paper_data,dotfilepath,width=20):
+def graphviz_file_of_references_and_article(mylistdata,paper_data,dotfilepath,width=20):
     f = open(dotfilepath, "w");
     f.write("digraph G {\n");
     f.write("\tnode [ shape=\"Mrecord\" ];\n");
@@ -18,12 +34,12 @@ def export_graphviz_file_of_article(mylistdata,paper_data,dotfilepath,width=20):
     
     title_format = ST.data_to_string(paper_data,width);
 
-    f.write("\tPRINCIPAL [ label=\""+title_format+"\" href=\""+paper_data["href"]+"\"];\n");
+    f.write("\tPRINCIPAL [ label=\""+title_format+"\" href=\""+paper_data["url"]+"\"];\n");
     
     N=len(mylistdata);
     for n in range(N):
         title_format = ST.data_to_string(mylistdata[n],width);
-        f.write("\tREF"+str(n)+" [ label=\""+title_format+"\" href=\""+mylistdata[n]["href"]+"\"];\n");
+        f.write("\tREF"+str(n)+" [ label=\""+title_format+"\" href=\""+mylistdata[n]["url"]+"\"];\n");
     
     for n in range(N):
         f.write("\tREF"+str(n)+"-> PRINCIPAL  [ style=dashed];\n");
@@ -37,7 +53,7 @@ def private_file_of_references_1(f,table,paper_data,width,sep=""):
     N=len(paper_data);
     for n in range(N):
         title_format = ST.data_to_string(paper_data[n],width);
-        f.write(sep+"\tARTICLE"+str(n)+" [ label=\""+title_format+"\" href=\""+paper_data[n]["href"]+"\"];\n");
+        f.write(sep+"\tARTICLE"+str(n)+" [ label=\""+title_format+"\" href=\""+paper_data[n]["url"]+"\"];\n");
         
     for n in range(N):
         M=len(table[n]);
@@ -49,7 +65,7 @@ def private_file_of_references_2(f,listref,linkref,width,force,sep):
     for n in range(N):
         if len(linkref[n])>=force:
             title_format = ST.data_to_string(listref[n],width);
-            f.write(sep+"\tPAPER"+str(n)+" [ label=\""+title_format+"\" href=\""+listref[n]["href"]+"\"];\n");
+            f.write(sep+"\tPAPER"+str(n)+" [ label=\""+title_format+"\" href=\""+listref[n]["url"]+"\"];\n");
             for m in range(len(linkref[n])):
                 f.write(sep+"\tPAPER"+str(n)+" -> ARTICLE"+str(linkref[n][m])+"  [ style=dashed];\n");
             

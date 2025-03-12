@@ -37,28 +37,46 @@ def fusion_two_paperdata(paper_data1,paper_data2):
         return None;
     
     paper_data={
+        "paperId":"",
         "title":"",
         "authors":[],
-        "href":"",
-        "date":""
+        "url":"",
+        "year":0,
+        "referenceCount":0,
+        "citationCount":0
     };
     
     paper_data["title"]=paper_data1["title"].lower().strip();
+
+    if len(paper_data1["paperId"])>len(paper_data2["paperId"]):
+        paper_data["paperId"]=paper_data1["paperId"];
+    else:
+        paper_data["paperId"]=paper_data2["paperId"];
     
     if len(paper_data1["authors"])>len(paper_data2["authors"]):
-        paper_data["authors"]=paper_data1["authors"];
+        paper_data["authors"]=paper_data1["authors"].copy();
     else:
-        paper_data["authors"]=paper_data2["authors"];
+        paper_data["authors"]=paper_data2["authors"].copy();
     
-    if len(paper_data1["date"])>len(paper_data2["date"]):
-        paper_data["date"]=paper_data1["date"];
+    if paper_data1["year"]>paper_data2["year"]:
+        paper_data["year"]=paper_data1["year"];
     else:
-        paper_data["date"]=paper_data2["date"];
+        paper_data["year"]=paper_data2["year"];
     
-    if len(paper_data1["href"])>len(paper_data2["href"]):
-        paper_data["href"]=paper_data1["href"];
+    if len(paper_data1["url"])>len(paper_data2["url"]):
+        paper_data["url"]=paper_data1["url"];
     else:
-        paper_data["href"]=paper_data2["href"];
+        paper_data["url"]=paper_data2["url"];
+    
+    if paper_data1["citationCount"]>paper_data2["citationCount"]:
+        paper_data["citationCount"]=paper_data1["citationCount"];
+    else:
+        paper_data["citationCount"]=paper_data2["citationCount"];
+        
+    if paper_data1["referenceCount"]>paper_data2["referenceCount"]:
+        paper_data["referenceCount"]=paper_data1["referenceCount"];
+    else:
+        paper_data["referenceCount"]=paper_data2["referenceCount"];
     
     return paper_data;
 
@@ -120,21 +138,23 @@ def private_ExtraReferences(paperdata,reference):
 
 '''
 [Input]
-path_of_chromedriver: {string} Path of driver of crome.
        article_title: {string list} List of article titles.
 {Return}
 paperdata: {Dictionary list} List with the dat of N papers (paper data).
     table: {list of integer list} List with N elements (one per paper), each n-th element is a index paper list with the realtion of n-th paper with the others.
 '''
-def InterReferences(path_of_chromedriver, article_title):
+def InterReferences(article_title, func_message=None):
     N=len(article_title);
 
     reference=[None]*N;
     paperdata=[None]*N;
     for n in range(N):
-        print("\n========="+"="*len(article_title[n]));
-        print("working:", article_title[n]);
-        mydata,myrefs=SST.SemanticScholarReferences(path_of_chromedriver, article_title[n])
+        if func_message is not None:
+            func_message("\n========="+"="*len(article_title[n]));
+            func_message("\nworking: "+article_title[n]);
+            
+        mydata = SST.article_dict_from_title(article_title[n])
+        myrefs=SST.references_dicts_from_id(mydata["paperId"], func_message=func_message)
         reference[n]=myrefs;
         paperdata[n]=mydata;
     

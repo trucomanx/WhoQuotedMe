@@ -21,15 +21,15 @@ Print the information of paper data.
 def print_paper_data(paper_data):
     print("  title:",paper_data["title"]);
     print("authors:",paper_data["authors"]);
-    print("   date:",paper_data["date"]);
-    print("   href:",paper_data["href"]);
+    print("   year:",paper_data["year"]);
+    print("    url:",paper_data["url"]);
     
 
 def data_to_string(paper_data,width):
-    title_format = str(paper_data["date"])+"\\n";
+    title_format = str(paper_data["year"])+"\\n";
     title_format+= text_width(paper_data["title"],width,"\\n");
     title_format+= "\\n-\\n";
-    title_format+= text_width(",".join(paper_data["authors"]),width,"\\n");
+    title_format+= text_width(";".join(paper_data["authors"]),width,"\\n");
     return title_format;
     
 

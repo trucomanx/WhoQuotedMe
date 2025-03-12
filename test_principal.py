@@ -1,17 +1,8 @@
 #
-import tools.StringTools as ST
 import tools.RelationsTools as RelT
 import tools.GraphvizTools as GT
-import platform
 
-if   platform.system() == 'Darwin':
-    path_of_chromedriver = ST.path_of_file(__file__)+"/ChromeDriver/ChromeDriverMac";
-elif platform.system() == 'Windows':
-    path_of_chromedriver = ST.path_of_file(__file__)+"/ChromeDriver/ChromeDriverWin.exe";
-else:
-    path_of_chromedriver = ST.path_of_file(__file__)+"/ChromeDriver/ChromeDriverLin";
-
-article_title = [
+articles = [
 # Others
 "Learning Spatiotemporal Features with 3D Convolutional Networks",
 # RGB prime
@@ -35,7 +26,8 @@ article_title = [
 
 dotfilepath = "salida.dot";
 
-data,table,listref,linkref=RelT.InterReferences(path_of_chromedriver, article_title);
+data,table,listref,linkref=RelT.InterReferences(articles,func_message=print);
+
 GT.export_graphviz_file_of_references(table,data,listref,linkref,dotfilepath,force=5);
 
-
+GT.view_dot_graphvizonline(dotfilepath)
