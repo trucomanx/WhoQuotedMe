@@ -1,10 +1,11 @@
 # WhoQuotedMe
-Who quoted me?
+Who cited my article?
 
-# Before
+# Prerequisites
 This program can run in **Windows, Linux and MacOS**.
-- Install the latest version of **Python 3** in your system.
-- Make sure you have **Google Chrome** installed (the program will open a headless version of Chrome and make the search on it)
+
+* Install the latest version of **Git** in your system.
+* Install the latest version of **Python 3** in your system.
 
 # Running
 	git clone https://github.com/trucomanx/WhoQuotedMe.git
